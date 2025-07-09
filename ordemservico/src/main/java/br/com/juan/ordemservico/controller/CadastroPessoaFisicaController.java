@@ -1,5 +1,6 @@
 package br.com.juan.ordemservico.controller;
 
+
 import br.com.juan.ordemservico.entity.CadastroPessoaFisica;
 import br.com.juan.ordemservico.service.CadastroPessoaFisicaService;
 import jakarta.validation.Valid;
@@ -32,23 +33,25 @@ public class CadastroPessoaFisicaController {
 
     @PostMapping("/salvarCadastroPessoaFisica")
     public ResponseEntity<CadastroPessoaFisica> salvar(@Valid @RequestBody CadastroPessoaFisica pessoa) {
-        // Vincular manualmente o relacionamento bidirecional
+
+
         if (pessoa.getEmail() != null) {
-            pessoa.getEmail().forEach(e -> e.setEmailPessoa(pessoa.getEmail().toString()));
+            pessoa.getEmail().forEach(e -> e.setPessoa(pessoa));
         }
+
         if (pessoa.getEndereco() != null) {
-            pessoa.getEndereco().forEach(e -> e.setPessoa (pessoa));
+            pessoa.getEndereco().forEach(e -> e.setPessoa(pessoa));
         }
         return ResponseEntity.ok(service.salvarPessoaFisica(pessoa));
     }
 
     @PutMapping("/atualizaCadastroPessoaFisica/{id}")
-    public ResponseEntity<CadastroPessoaFisica> atualizar(@PathVariable UUID id, @Valid @RequestBody CadastroPessoaFisica novaPessoa) {
+    public ResponseEntity<CadastroPessoaFisica> atualizar(@PathVariable UUID id, @RequestBody CadastroPessoaFisica novaPessoa) {
         // Garantir que os relacionamentos estejam consistentes
-        if (novaPessoa.getEmail() != null) {
-            novaPessoa.getEmail().forEach(e -> e.setPessoa(novaPessoa));
+        if (novaPessoa.getEmail() != null && !novaPessoa.getEmail().isEmpty()) {
+            novaPessoa.setEmail(novaPessoa.getEmail());
         }
-        if (novaPessoa.getEndereco() != null) {
+        if (novaPessoa.getEndereco() != null && !novaPessoa.getEmail().isEmpty()) {
             novaPessoa.getEndereco().forEach(e -> e.setPessoa(novaPessoa));
         }
         return ResponseEntity.ok(service.atualizar(id, novaPessoa));

@@ -34,8 +34,8 @@ public class EmailService {
         if (emailExistente.isPresent()) {
             Email email = emailExistente.get();
 
-            if (novoEmail.getEmailPessoa() != null) {
-                email.setEmailPessoa(novoEmail.getEmailPessoa());
+            if (novoEmail.getMelhorEmail() != null) {
+                email.setMelhorEmail(novoEmail.getMelhorEmail());
             }
 
             return emailRepository.save(email);
