@@ -37,36 +37,40 @@ public void deletar(UUID id){
         cadastroPessoaFisicaRepository.deleteById(id);
 
 }
-//public CadastroPessoaFisica atualizar(UUID id, CadastroPessoaFisica novaPessoa){
-//    Optional<CadastroPessoaFisica> buscaPessoaFisica = this.buscarPorId(id);
-//
-//    if (buscaPessoaFisica.isPresent()) {
-//        CadastroPessoaFisica pessoa = buscaPessoaFisica.get();
-//
-////        if (novaPessoa. != null) {
-////            pessoa.setNome(novaPessoa.getNome());
-////        }
-////
-////        if (novaPessoa.getCpf() != null) {
-////            pessoa.setCpf(novaPessoa.getCpf());
-////        }
-////
-////        if (novaPessoa.getDataNascimento() != null) {
-////            pessoa.setDataNascimento(novaPessoa.getDataNascimento());
-////        }
-////
-////        if (novaPessoa.getEmail() != null && !novaPessoa.getEmail().isEmpty()) {
-////            pessoa.setEmail(novaPessoa.getEmail());
-////        }
-////
-////        if (novaPessoa.getEndereco() != null && !novaPessoa.getEndereco().isEmpty()) {
-////            pessoa.setEndereco(novaPessoa.getEndereco());
-////        }
-////
-////        return repository.save(pessoa);
-//    } else {
-//        throw new RuntimeException("Pessoa não encontrada com o ID: " + id);
-//    }
+public CadastroPessoaFisica atualizar(UUID id, CadastroPessoaFisica novaPessoa){
+    Optional<CadastroPessoaFisica> buscaPessoaFisica = this.buscarPorId(id);
+
+    if (buscaPessoaFisica.isPresent()) {
+        CadastroPessoaFisica pessoa = buscaPessoaFisica.get();
+
+        if (novaPessoa.getNome() != null) {
+            pessoa.setNome(novaPessoa.getNome());
+        }
+
+        if (novaPessoa.getCpf() != null) {
+            pessoa.setCpf(novaPessoa.getCpf());
+        }
+
+        if (novaPessoa.getDataNascimento() != null) {
+            pessoa.setDataNascimento(novaPessoa.getDataNascimento());
+        }
+
+        if (novaPessoa.getEmail() != null && !novaPessoa.getEmail().isEmpty()) {
+            pessoa.setEmail(novaPessoa.getEmail());
+        }
+
+        if (novaPessoa.getEndereco() != null && !novaPessoa.getEndereco().isEmpty()) {
+            pessoa.setEndereco(novaPessoa.getEndereco());
+        }
+
+        return cadastroPessoaFisicaRepository.save(pessoa);
+    } else {
+        throw new RuntimeException("Pessoa não encontrada com o ID: " + id);
+    }
+}
+
+
+
 
 
 

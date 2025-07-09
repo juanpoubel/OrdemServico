@@ -1,6 +1,7 @@
 package br.com.juan.ordemservico.entity;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -15,6 +16,7 @@ public class Endereco {
 
 
    @Id
+   @Schema(hidden = true)
    @GeneratedValue
    @UuidGenerator
    private UUID id;
@@ -30,6 +32,7 @@ public class Endereco {
    private String cep;
 
    @ManyToOne
+   @Schema(hidden = true)
    @JoinColumn(name = "pessoa_id", nullable = false)
    private CadastroPessoaFisica pessoa;
 
