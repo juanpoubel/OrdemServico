@@ -7,18 +7,8 @@ services:
     dockerfilePath: ./Dockerfile
     envVars:
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:postgresql://dpg-d1nep7mmcj7s73f411jg-a/ordemservico_9ncl
+        value: jdbc:postgresql://dpg-d1ngch3e5dus73ar2a10-a.oregon-postgres.render.com:5432/ordemservico_lq25
       - key: SPRING_DATASOURCE_USERNAME
-        fromDatabase:
-          name: ordem-servico-db
-          property: user
+        value: ordemuser
       - key: SPRING_DATASOURCE_PASSWORD
-        fromDatabase:
-          name: ordem-servico-db
-          property: password
-
-databases:
-  - name: ordem-servico-db
-    databaseName: ordemservico
-    user: ordemuser
-    plan: free
+        value: z7qiwKAen77z71jBCtGJJCKknswfh8Oz
