@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: ordem-servico-api
+    env: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://dpg-d1nep7mmcj7s73f411jg-a/ordemservico_9ncl
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: ordem-servico-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: ordem-servico-db
+          property: password
+
+databases:
+  - name: ordem-servico-db
+    databaseName: ordemservico
+    user: ordemuser
+    plan: free
